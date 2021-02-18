@@ -244,14 +244,16 @@ def giveReview(user_nick, review_date, number_rate, user_review=':)'):
         if bot is not None:
             bot.bot.quit()
         prox = Proxy.g_prox.getProxy()
+        prox = prox if isinstance(prox, str) else prox.get_address()
+        print(prox, "  :address")
+        prox = prox.strip()
 
         # get ChromeDriver with given proxy
 
         url = setting.url
         driverPath = setting.driverPath
         bot = Bot(driverPath=driverPath, url=url,
-                  proxAddr=prox.get_address())
-        print(prox.get_address(), "  :address")
+                  proxAddr=prox)
 
         # check if pass anti-bot of cloudflare
 
@@ -283,6 +285,10 @@ if __name__ == "__main__":
     print("Please insert user name...")
     user_nick = input()
     # user_nick = 'Daniel88', 'Andrzej', 'Byłem tam, uciekaj.'
+
+    # print("Please write a comment here...")
+    # user_comment = input()
+    # # user_comment = 'Prawda, kamery na każdym kroku. Kamera nawet w jadalni i poukrywane na nogach od regałów.'
 
     print("Please insert thread date...")
     review_date = input()
