@@ -1,3 +1,4 @@
+import random
 import json
 with open("setting.json") as f:
     setting = json.load(f)
